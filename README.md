@@ -250,3 +250,59 @@ if __name__ == "__main__":
     # If real life scenario, loading into a postgre database, then the following line should be used:
     #main("grocery_sales.csv", "extra_data.parquet", "postgresql://user:password@localhost/sales_db")
 ```
+
+## Tests
+1) `test_transform()`:
+This test function validates the behavior of the transform function from the pipeline. It creates a sample DataFrame representing raw sales data with missing values and dates in various columns.
+Key assertions:
+- Checks if a new column "Month" is created after transformation.
+- Verifies that there are no missing values in the "Weekly_Sales", "CPI", and "Unemployment" columns, ensuring that the missing values are filled.
+- Ensures that the "Weekly_Sales" values are filtered correctly by asserting that no values below 10,000 remain after filtering.
+The goal of this test is to ensure that the transformation logic (e.g., handling missing values, adding new columns, and applying filters) works as expected.
+2) `test_avg_weekly_sales_per_month()`:
+This test checks the functionality of the avg_weekly_sales_per_month function from the pipeline. It creates a sample clean dataset with sales data for different months.
+Key assertions:
+- Ensures that the output contains a "Month" column.
+- Checks that the output also includes an "Avg_Sales" column, which is the result of calculating the average weekly sales for each month.
+- Verifies that the number of unique months in the aggregated data is correct (i.e., 3 months).
+- Confirms that the average weekly sales for the first month are correctly calculated to 19,000, using rounding to match the expected result.
+This test verifies that the aggregation process correctly computes the average sales per month and that the resulting dataset has the correct structure and values.
+```python
+import pytest
+import pandas as pd
+from wallmart_pipeline import transform, avg_weekly_sales_per_month 
+
+def test_transform():
+    data = pd.DataFrame({
+        "Store_ID": [1, 2, 3],
+        "Weekly_Sales": [15000, None, 8000],
+        "IsHoliday": [False, True, False],
+        "CPI": [200.5, None, 190.3],
+        "Unemployment": [6.5, 7.1, None],
+        "Date": ["2024-01-15T00:00:00.000", "2024-02-20T00:00:00.000", "2024-03-10T00:00:00.000"]
+    })
+    transformed_data = transform(data)
+    
+    assert "Month" in transformed_data.columns, "Month column not created"
+    assert transformed_data["Weekly_Sales"].isnull().sum() == 0, "Missing Weekly_Sales not filled"
+    assert transformed_data["CPI"].isnull().sum() == 0, "Missing CPI not filled"
+    assert transformed_data["Unemployment"].isnull().sum() == 0, "Missing Unemployment not filled"
+    assert transformed_data["Weekly_Sales"].min() > 10000, "Filtering condition not applied correctly"
+
+def test_avg_weekly_sales_per_month():
+    clean_data = pd.DataFrame({
+        "Month": [1, 1, 2, 2, 3, 3],
+        "Weekly_Sales": [20000, 18000, 22000, 21000, 25000, 23000]
+    })
+    
+    agg_data = avg_weekly_sales_per_month(clean_data)
+    
+    assert "Month" in agg_data.columns, "Month column missing in aggregated data"
+    assert "Avg_Sales" in agg_data.columns, "Avg_Sales column missing"
+    assert len(agg_data) == 3, "Incorrect number of months aggregated"
+    assert round(agg_data.loc[agg_data["Month"] == 1, "Avg_Sales"].values[0], 2) == 19000.0, "Incorrect average calculation for month 1"
+
+
+if __name__ == "__main__":
+    pytest.main(["-v", "wallmart_pipeline_pytest.py"])
+```

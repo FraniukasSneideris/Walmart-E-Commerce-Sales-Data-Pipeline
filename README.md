@@ -1,4 +1,5 @@
 # Walmart-E-Commerce-Sales-Data-Pipeline
+![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## Overview
 

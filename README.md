@@ -323,3 +323,9 @@ Key takeaways from the project:
 - Aggregated data is stored efficiently in both CSV files and a PostgreSQL database, ensuring flexibility for further analysis.
 
 The project serves as a valuable reference for professionals looking to build scalable data pipelines, particularly in the context of analyzing retail data. It is also a solid example of how to manage and integrate multiple data sources, apply data transformation techniques, and store the final results for further use.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

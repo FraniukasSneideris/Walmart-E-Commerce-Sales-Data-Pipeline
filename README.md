@@ -14,6 +14,8 @@ The primary goal of this project is to demonstrate proficiency in **ETL** (Extra
 1. Cleaned and transformed data saved as `clean_data.csv`.
 2. Aggregated monthly sales data saved as `agg_data.csv`.
 
+-----
+
 ## Features
 
 1. **Extract**: Extracts and merges data from the provided CSV and Parquet files.
@@ -30,6 +32,8 @@ The primary goal of this project is to demonstrate proficiency in **ETL** (Extra
 - `sqlalchemy`
 - `pytest`
 - `logging`
+
+--------
 
 ## The Code
 1) Logging Setup: This section sets up the logging configuration for the script. It defines the logging level, which determines the severity of messages that will be captured. It also formats the log entries with timestamps and log levels, and specifies that logs will be written both to a log file ("pipeline.log") and to the console.
@@ -306,3 +310,15 @@ def test_avg_weekly_sales_per_month():
 if __name__ == "__main__":
     pytest.main(["-v", "wallmart_pipeline_pytest.py"])
 ```
+
+-----
+
+## Conclusion
+The Walmart-E-Commerce-Sales-Data-Pipeline project demonstrates an effective approach to analyzing and processing retail sales data through an ETL pipeline. By combining multiple data sources and applying necessary data transformations, this project not only cleanses and aggregates data but also provides actionable insights into how public holidays impact sales. The pipeline is structured to be scalable and modular, allowing for future extensions, such as incorporating additional data sources or integrating machine learning models to predict sales trends.
+
+Key takeaways from the project:
+- Successful implementation of ETL processes with robust logging and error handling.
+- Data is cleaned and transformed to eliminate gaps, standardize formats, and ensure relevance.
+- Aggregated data is stored efficiently in both CSV files and a PostgreSQL database, ensuring flexibility for further analysis.
+
+The project serves as a valuable reference for professionals looking to build scalable data pipelines, particularly in the context of analyzing retail data. It is also a solid example of how to manage and integrate multiple data sources, apply data transformation techniques, and store the final results for further use.

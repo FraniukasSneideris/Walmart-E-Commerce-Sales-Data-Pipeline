@@ -39,6 +39,7 @@ The primary goal of this project is to demonstrate proficiency in **ETL** (Extra
 5) `avg_weekly_sales_per_month()`: This function calculates the average weekly sales for each month by grouping the data by the "Month" column and calculating the mean of the "Weekly_Sales" values for each group. The result is an aggregated dataset that contains the average sales for each month.
 6) `load()`: The load function takes the cleaned and aggregated data and saves it into CSV files. It also optionally loads the data into a PostgreSQL database if a database connection URL is provided. The function logs the success or failure of each file save operation.
 7) `validation()`: This function checks if the CSV files created in the load function actually exist. It logs a success message if the files are found, or an error message if they are missing. This serves as a simple validation step to ensure that the pipeline has completed successfully.
+8) `main()`: This function executes all the script.
 ```python
 from sqlalchemy import create_engine
 import pandas as pd

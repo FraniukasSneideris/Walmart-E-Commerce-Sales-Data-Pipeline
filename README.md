@@ -255,6 +255,19 @@ if __name__ == "__main__":
     # If real life scenario, loading into a postgre database, then the following line should be used:
     #main("grocery_sales.csv", "extra_data.parquet", "postgresql://user:password@localhost/sales_db")
 ```
+### Output
+Since logging was used in this script, when succesfully run, the following output is produced:
+```bash
+2025-03-07 18:50:23 - INFO - Starting data pipeline execution.
+2025-03-07 18:50:23 - INFO - Data successfully extracted and merged.
+2025-03-07 18:50:23 - INFO - Data transformation successful.
+2025-03-07 18:50:23 - INFO - Average weekly sales per month calculated successfully.
+2025-03-07 18:50:23 - INFO - clean_data.csv saved successfully.
+2025-03-07 18:50:23 - INFO - agg_data.csv saved successfully.
+2025-03-07 18:50:23 - INFO - clean_data.csv validated successfully.
+2025-03-07 18:50:23 - INFO - agg_data.csv validated successfully.
+2025-03-07 18:50:23 - INFO - Data pipeline execution completed successfully.
+```
 
 ## Tests
 1) `test_transform()`:

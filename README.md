@@ -277,6 +277,7 @@ Key assertions:
 - Verifies that there are no missing values in the "Weekly_Sales", "CPI", and "Unemployment" columns, ensuring that the missing values are filled.
 - Ensures that the "Weekly_Sales" values are filtered correctly by asserting that no values below 10,000 remain after filtering.
 The goal of this test is to ensure that the transformation logic (e.g., handling missing values, adding new columns, and applying filters) works as expected.
+
 `test_avg_weekly_sales_per_month()`:
 This test checks the functionality of the avg_weekly_sales_per_month function from the pipeline. It creates a sample clean dataset with sales data for different months.
 Key assertions:
